@@ -155,7 +155,7 @@ class HomePage extends hooks.HookWidget {
                   TextButton(
                       onPressed: () {
                         final text = textController.text;
-                        store.dispatch(AddItemAction(text));
+                        store.dispatch(RemoveItemAction(text));
                         textController.clear();
                       },
                       child: const Text('Remove')),
