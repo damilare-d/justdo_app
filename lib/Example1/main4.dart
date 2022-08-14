@@ -95,9 +95,14 @@ class Example1HomePage extends hooks.HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextController = hooks.useTextEditingController();
-    final store = Store(appStateReducer,
-        initialState: State(products: [], filter: ProductFilter.all));
+    final textController = hooks.useTextEditingController();
+    final store = Store(
+      appStateReducer,
+      initialState: State(
+        products: [],
+        filter: ProductFilter.all,
+      ),
+    );
     return Scaffold(
       body: StoreProvider(
         store: store,
@@ -127,23 +132,23 @@ class Example1HomePage extends hooks.HookWidget {
               ),
             ]),
             TextField(
-              controller: TextController,
+              controller: textController,
             ),
             Row(
               children: [
                 TextButton(
                   onPressed: () {
-                    final text = TextController.text;
+                    final text = textController.text;
                     store.dispatch(AddProductAction(text));
-                    TextController.clear();
+                    textController.clear();
                   },
                   child: const Text('Add'),
                 ),
                 TextButton(
                     onPressed: () {
-                      final text = TextController.text;
+                      final text = textController.text;
                       store.dispatch(RemoveProductAction(text));
-                      TextController.clear();
+                      textController.clear();
                     },
                     child: const Text('Remove'))
               ],
